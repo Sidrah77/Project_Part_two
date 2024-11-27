@@ -1,0 +1,52 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Book Database-->
+ <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="text-content">
+      <h2>Add, delete, and edit!</h2>
+      <h1>Add your jewellery here!</h1>
+    </div>
+  </section>
+</main>
+
+<div class="container">
+    <!-- Add Shoe Button -->
+    <div class="text-right mb-3">
+        <a href="/jewelleryslist/add" class="btn btn-primary" role="button">
+            <i class="fas fa-cart-plus"></i> Add Jewellery
+        </a>
+    </div>
+
+    <!-- Cards for ShoeList -->
+    <div class="row">
+        <% for(let count = 0; count < JewelleryList.length; count++) { %>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <!-- card header, displays shoes brand in the center --> 
+                <div class="card-header text-center">
+                    <h5><%= JewelleryList[count].product %></h5>
+                </div>
+                    <div class="card-body">
+                    <p><strong>Category:</strong> <%= JewelleryList[count].category %></p>
+                    <p><strong>Price:</strong> <%= JewelleryList[count].price %></p>
+                    <p><strong>Color:</strong> <%= JewelleryList[count].color %></p>
+                    <p><strong>Metal:</strong> <%= JewelleryList[count].metal %></p>
+                    <p><strong>Size:</strong> <%= JewelleryList[count].size %></p>
+                        <div class="text-center">
+                            <a href="/jewelleryslist/edit/<%= JewelleryList[count]._id %>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <!-- delete button with confirmation -->
+                            <a href="/jewelleryslist/delete/<%= JewelleryList[count]._id %>" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure you want to delete this item?');">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <%- include ../Partials/footer.ejs%>
